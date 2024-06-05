@@ -27,6 +27,10 @@ public class Torneo {
 
 	
 	public int menuEquipo(Equipo equipo1, Equipo equipo2, Equipo equipo3 , Equipo equipo4) {
+		
+		
+		equipo1.getPlantel().clear();
+		equipo2.getPlantel().clear();
 		equipo1.CargarMoron(equipo1);
 		equipo2.CargarChicago(equipo2);
 		equipo3.AgregarEquipoJugador(equipo3);
@@ -146,7 +150,7 @@ public class Torneo {
 	
 	//-------------------------RECORRIDO DEL PARTIDO---------------------------------------------------------
  	public void PartidoClasico(Equipo equipo1, Equipo equipo2) {
- 		
+ 	
  	/*para realizar el juego genero 10 numeros random , cada uno cumple una funcion
  	 * num 1 = gol de boca
  	 * num 2 = roja para boca
@@ -194,6 +198,7 @@ public class Torneo {
 				rojas2++;
 				JOptionPane.showMessageDialog(null, "Roja para " + equipo2.getNombre() + "\nJugador  "+ equipo2.getPlantel().remove(3).getNombre());
 			}
+			
 		}
 
 		
@@ -306,8 +311,10 @@ public class Torneo {
  	
  //-------------------------------------JUGAR PARTIDO-----------------------------------------------------------------------
 	public Equipo JugarPartido(Equipo equipo1, Equipo equipo2) {
+		
 		equipo1.CargarMoron(equipo1);
 		equipo2.CargarChicago(equipo2);
+	
 		if (equipo1==equipo2) {
 			JOptionPane.showMessageDialog(null, "No se puede jugar entre el mismo equipo");
 			return null;
@@ -325,8 +332,10 @@ public class Torneo {
 		
 			
 			}}
-		return null;
 		
+		
+		return null;
+	
 	}
 
 	////-------------Seleccion de equipos-------------------------------------------------
