@@ -11,8 +11,7 @@ public class Equipo {
 		this.nombre = nombre;
 		this.ciudad = ciudad;
 	}
-	public Equipo() {
-	}
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -51,6 +50,7 @@ public class Equipo {
 		equipo.getPlantel().add(new Jugador("Berterame", "Delantero", 25));
 		equipo.getPlantel().add(new Jugador("Rescaldani", "Delantero", 33));
 	}
+	
 	public void CargarChicago(Equipo equipo) {
 		equipo.getPlantel().add(new Jugador("Ferrero", "Arquero", 26));
 		equipo.getPlantel().add(new Jugador("Martinez", "Defensor", 24));
@@ -132,6 +132,11 @@ public class Equipo {
 		}
 		
 	}
+
+	
+	
+	
+	
 	
 }
 
