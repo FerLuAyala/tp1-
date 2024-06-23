@@ -66,6 +66,7 @@ public class Torneo {
 	// --------------------------EQUIPOS Y CARGA DE
 	// JUGADORES-----------------------------------------------------
 	public void menuEquipo() {
+		
 		String[] equiposarray = new String[equipos.size()];
 		for (int i = 0; i < equipos.size(); i++) {
 			equiposarray[i] = equipos.get(i).getNombre();
@@ -97,7 +98,7 @@ public class Torneo {
 			case 2:
 				
 				if (equipos.get(opcion).getPlantel().isEmpty()) {
-					JOptionPane.showMessageDialog(null, "No Jugadores en este equipo para mostrar" + "\nIngrese jugadores","Jugadores del equipo", 0);
+					JOptionPane.showMessageDialog(null, "No hay Jugadores en este equipo para mostrar" + "\nIngrese jugadores","Jugadores del equipo", 0);
 				
 				}else {
 					JOptionPane.showMessageDialog(null, "Lista de jugadores de " + equipos.get(opcion).getNombre() + ": "
@@ -122,7 +123,7 @@ public class Torneo {
 	// -------------------------RECORRIDO DEL
 	// PARTIDO---------------------------------------------------------
 	public void PartidoClasico(Equipo equipo1, Equipo equipo2) {
-
+	
 		/*
 		 * para realizar el juego genero 10 numeros random , cada uno cumple una funcion
 		 * num 1 = gol de boca num 2 = roja para boca num 3 = gol de river num 4 =
@@ -309,7 +310,7 @@ public class Torneo {
 				};
 				int opc= (int)(Math.random()*3);
 				
-				JOptionPane.showMessageDialog(null, "Bienvenidos a un nuevo clasico en el Oeste" + "\n"
+				JOptionPane.showMessageDialog(null, "Bienvenidos a un nuevo encuentro" + "\n"
 						+ equipo1.getNombre() + " vs " + equipo2.getNombre() + "\nEste dia: " + LocalDate.now() + "\n" + "En: " + estadios[opc]);
 
 				PartidoClasico(equipo1, equipo2);
@@ -332,6 +333,14 @@ public class Torneo {
 		equipo1.AgregarEquipoJugador(equipo1);
 		equipo2.AgregarEquipoJugador(equipo2);
 		
+		String [] estadios= {
+				
+				"Francisco Urbano Morón" , "Estadio Alfredo Beranger Tempeley" ,"Estadio Víctor Antonio Legrotaglie Mendoza"
+		};
+		int opc= (int)(Math.random()*3);
+		
+		JOptionPane.showMessageDialog(null, "Bienvenidos a un nuevo encuentro" + "\n"
+				+ equipo1.getNombre() + " vs " + equipo2.getNombre() + "\nEn: " + estadios[opc]);
 
 				int gol1=0;
 				int gol2=0;
