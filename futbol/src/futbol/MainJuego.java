@@ -8,14 +8,16 @@ public class MainJuego {
 	public static void main(String[] args) {
 		Torneo clasico = new Torneo();
 		
-		Equipo morón = new Equipo("Morón","Morón");
-		Equipo chicago = new Equipo("Chicago","Mataderos");
-		Equipo quilmes = new Equipo("Quilmes","Quilmes");
-		Equipo smartin = new Equipo("SanMartin","San Juan");
-		Equipo gimnasia = new Equipo("Gimnasia","Mendoza");
-		Equipo chacarita = new Equipo("Chacarita","San Martin");
-		Equipo temperley = new Equipo("Temperley","temperley");
-		Equipo agropecuario = new Equipo("Agropecuario","Carlos Casares");
+	
+		
+		Equipo morón = new Equipo("Morón","Morón" ,"n1 Prom 40pts Partidos: 10 ganados - 10 empates - 3  derrotas" , 2);
+		Equipo chicago = new Equipo("Chicago","Mataderos" , "n2° Prom 36pts. Partidos: 8  ganados , 12 empates , 3  derrotas" , 2 );
+		Equipo quilmes = new Equipo("Quilmes","Quilmes" , "n3° Prom 34pts. Partidos: 8  ganados , 10 empates , 5  derrotas" , 2);
+		Equipo smartin = new Equipo("SanMartin","San Juan" , "n4° Prom 31pts. Partidos: 7  ganados , 10 empates , 6  derrotas" ,0 );
+		Equipo gimnasia = new Equipo("Gimnasia","Mendoza" , "n5° Prom 30pts. Partidos: 8  ganados , 6  empates , 9  derrotas",0);
+		Equipo chacarita = new Equipo("Chacarita","San Martin","n6° Prom 27pts. Partidos: 9  ganados , 0  empates , 14 derrotas" , 0);
+		Equipo temperley = new Equipo("Temperley","temperley" , "n7° Prom 27pts. Partidos: 8  ganados , 3  empates , 12 derrotas" , 0);
+		Equipo agropecuario = new Equipo("Agropecuario","Carlos Casares" , "n8° Prom 27pts. Partidos: 7  ganados , 4  empates , 12 derrotas" ,0);
 		
 		
 		clasico.getEquipos().add(morón);
@@ -27,14 +29,16 @@ public class MainJuego {
 		clasico.getEquipos().add(temperley);
 		clasico.getEquipos().add(agropecuario);
 	
-	
-		JOptionPane.showMessageDialog(null, "Bienvenidos a Futbol en ascenso", "Futbol en ascenso",
-				JOptionPane.DEFAULT_OPTION, new ImageIcon(MainJuego.class.getResource("/img/pelota.png")));
+		//clasico.seleccionarduo(clasico.getEquipos());
+
+		
+		JOptionPane.showMessageDialog(null, "BIENVENIDOS" + "\nA Futbol en ascenso", "Futbol en ascenso",
+				JOptionPane.DEFAULT_OPTION, new ImageIcon(MainJuego.class.getResource("/img/logo.png")));
 	    
 int opc;
 		
 		do {	
-		String[] menuPrincipal = {  "Equipos", "Jugar Partido", "Jugar Cuartos", "Partidos Jugados" ,"salir" };
+		String[] menuPrincipal = {  "Equipos", "Jugar Partido", "Jugar Cuartos", "Partidos Jugados" ,"Jugar penales" ,"salir" };
 		
 		opc = JOptionPane.showOptionDialog(null, null ,"Primera Nacional" , 0,
 				JOptionPane.DEFAULT_OPTION, 
@@ -49,12 +53,15 @@ int opc;
 					JOptionPane.DEFAULT_OPTION, new ImageIcon(MainJuego.class.getResource("/img/clasico.png")));
 			
 			clasico.JugarPartido( clasico.getEquipos().get(clasico.elegiEquipos(clasico.getEquipos()))
-				    ,clasico.getEquipos().get(clasico.elegiEquipos(clasico.getEquipos())));
+				    			 ,clasico.getEquipos().get(clasico.elegiEquipos(clasico.getEquipos())));
 			
 			break;
 		case 2:
+			clasico.rankingPuntos();
+
 			JOptionPane.showMessageDialog(null, "", "Futbol en ascenso llaves del REDUCIDO",
 					JOptionPane.DEFAULT_OPTION, new ImageIcon(MainJuego.class.getResource("/img/comienzo.jpg")));
+			
 			
 			for (int i = 0; i <= 3; i++) {
 
@@ -64,8 +71,8 @@ int opc;
 			Partidos nuevo =clasico.JugarFase(clasico.seleccionarEquipo(clasico.getEquipos()),
 					clasico.seleccionarEquipo(clasico.getEquipos()));
 
-			JOptionPane.showMessageDialog(null, "Final de:  " + nuevo);
-			JOptionPane.showMessageDialog(null, "Paso a Semifinales:  " + "\n"+ nuevo.ganadorFase().getNombre(),"Cuartos de final",
+	
+			JOptionPane.showMessageDialog(null, "Final de  " + nuevo+"\nPaso a Semifinales:  " + "\n"+ nuevo.ganadorFase().getNombre(),"Cuartos de final",
 					JOptionPane.DEFAULT_OPTION, new ImageIcon(MainJuego.class.getResource("/img/final.png")));;
 			clasico.getGanadores().add(nuevo.ganadorFase());
 			clasico.getPartidos().add(nuevo);
@@ -75,8 +82,8 @@ int opc;
 							JOptionPane.DEFAULT_OPTION, new ImageIcon(MainJuego.class.getResource("/img/semi.jpg")));
 					Partidos nuevo = clasico.JugarFase(clasico.seleccionarEquipo(clasico.getGanadores()),
 							clasico.seleccionarEquipo(clasico.getGanadores()));
-					JOptionPane.showMessageDialog(null, "Finalizo la Primera SEMIFinal  " + nuevo);
-					JOptionPane.showMessageDialog(null, "Paso a la Final:  " + "\n"+ nuevo.ganadorFase().getNombre(),
+			
+					JOptionPane.showMessageDialog(null, "Finalizo la Primera SEMIFinal  " + nuevo+"Paso a la Final:  " + "\n"+ nuevo.ganadorFase().getNombre(),
 							"Semifinal",JOptionPane.DEFAULT_OPTION, new ImageIcon(MainJuego.class.getResource("/img/final.png")));;
 					clasico.getFinalistas().add(nuevo.ganadorFase());
 					clasico.getPartidos().add(nuevo);
@@ -85,8 +92,8 @@ int opc;
 							JOptionPane.DEFAULT_OPTION, new ImageIcon(MainJuego.class.getResource("/img/semi.jpg")));
 					nuevo = clasico.JugarFase(clasico.seleccionarEquipo(clasico.getGanadores()),
 							clasico.seleccionarEquipo(clasico.getGanadores()));
-					JOptionPane.showMessageDialog(null, "Finalizo la Segunda SEMIFinal " + nuevo);
-					JOptionPane.showMessageDialog(null, "Paso a la Final:  " + "\n"+ nuevo.ganadorFase().getNombre(),"Semifinal",
+					
+					JOptionPane.showMessageDialog(null, "Finalizo la Segunda SEMIFinal " + nuevo+"Paso a la Final:  " + "\n"+ nuevo.ganadorFase().getNombre(),"Semifinal",
 					JOptionPane.DEFAULT_OPTION, new ImageIcon(MainJuego.class.getResource("/img/final.png")));;
 					clasico.getFinalistas().add(nuevo.ganadorFase());
 					clasico.getPartidos().add(nuevo);
@@ -96,9 +103,9 @@ int opc;
 							JOptionPane.DEFAULT_OPTION, new ImageIcon(MainJuego.class.getResource("/img/final.jpg")));
 					nuevo = clasico.JugarFase(clasico.seleccionarEquipo(clasico.getFinalistas()),
 							clasico.seleccionarEquipo(clasico.getFinalistas()));
-					JOptionPane.showMessageDialog(null, "Finalizo la Final  " + nuevo);
-					JOptionPane.showMessageDialog(null, "El ganador De este Reducido fue:  " +"\n" +  nuevo.ganadorFase().getNombre(), 
-					"Ganador", JOptionPane.DEFAULT_OPTION, new ImageIcon(MainJuego.class.getResource("/img/gana.png")));
+			
+					JOptionPane.showMessageDialog(null, "Finalizo la Final  " + nuevo+"\nEl ganador De este Reducido fue:  " +"\n" +  nuevo.ganadorFase().getNombre(), 
+					" Ganador ", JOptionPane.DEFAULT_OPTION, new ImageIcon(MainJuego.class.getResource("/img/gana.png")));
 					clasico.getPartidos().add(nuevo);		
 			
 
@@ -112,14 +119,15 @@ int opc;
 			}
 			
 			break;
-		
 		case 4:
+			clasico.jugarPenales();
+		case 5:
 			JOptionPane.showMessageDialog(null, "Saliendo..");
 			break;
 		default:
 			break;
 		}
-		} while (opc!=4);
+		} while (opc!=5);
 	}
 	
 	

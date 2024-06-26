@@ -5,20 +5,20 @@ import java.time.LocalDate;
 public class Partidos {
 	private Equipo equipo1;
 	private Equipo equipo2;
-	private int gol1;
-	private int gol2;
+	private int marca1;
+	private int marca2;
 	private String fase;
 	private LocalDate fecha;
 	private static int cantPartidos=0;
 	
 	
-	public Partidos (Equipo equipo1, Equipo equipo2 , int gol1, int gol2) {
+	public Partidos (Equipo equipo1, Equipo equipo2 , int marca1, int marca2) {
 		super();
 		cantPartidos++;
 		this.equipo1 = equipo1;
 		this.equipo2 = equipo2;
-		this.gol1 = gol1;
-		this.gol2 = gol2;
+		this.marca1 = marca1;
+		this.marca2 = marca2;
 		this.fase = GenerarFase();
 		this.fecha = Fecha();
 	
@@ -77,29 +77,29 @@ public class Partidos {
 	}
 
 	
-	public int getGol1() {
-		return gol1;
+	public int getMarca1() {
+		return marca1;
 	}
 
 
-	public void setGol1(int gol1) {
-		this.gol1 = gol1;
+	public void setMarca1(int marca1) {
+		this.marca1 = marca1;
 	}
 
 
-	public int getGol2() {
-		return gol2;
+	public int getMarca2() {
+		return marca2;
 	}
 
 
-	public void setGol2(int gol2) {
-		this.gol2 = gol2;
+	public void setMarca2(int marca2) {
+		this.marca2 = marca2;
 	}
 
 
 @Override
 	public String toString() {
-		return "\nFase: " + fase  + "\n" + equipo1.getNombre() + " : " + gol1   +" VS " + equipo2.getNombre() + " : " + gol2   + "\nFecha: " + fecha;
+		return "\nFase: " + fase  + "\n" + equipo1.getNombre() + " : " + marca1   +" VS " + equipo2.getNombre() + " : " + marca2   + "\nFecha: " + fecha;
 	}
 
 
@@ -128,7 +128,7 @@ public LocalDate Fecha() {
 
 public Equipo ganadorFase() {
 		
-		if (gol1>gol2) {
+		if (marca1>marca2) {
 		return equipo1;
 	} else {
 		return equipo2;

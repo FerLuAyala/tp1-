@@ -1,17 +1,40 @@
 package futbol;
 import java.util.LinkedList;
+
 import javax.swing.JOptionPane;
 
 public class Equipo {
 	private String nombre;
 	private String ciudad;
+	private String promedio;
+	private int prom;
 	private LinkedList<Jugador> plantel = new LinkedList<Jugador>();
-	public Equipo(String nombre, String ciudad) {
+	
+	
+		public Equipo(String nombre, String ciudad, String promedio , int prom) {
 		super();
 		this.nombre = nombre;
 		this.ciudad = ciudad;
+		this.promedio = promedio;
+		this.prom = prom;
 	}
-	
+
+		public int getProm() {
+			return prom;
+		}
+
+		public void setProm(int prom) {
+			this.prom = prom;
+		}
+
+		public String getPromedio() {
+		return promedio;
+	}
+
+	public void setPromedio(String promedio) {
+		this.promedio = promedio;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -121,7 +144,7 @@ public class Equipo {
 	
 	public void AgregarEquipoJugador (Equipo equipo) {
 	//--AGREGAR EQUIPO COMPLETO ALEATORIO	
-		for (int i = 0; i <=11; i++) {
+		for (int i = 0; i <=10; i++) {
 			String[] nombres = { "Diaz", "Perez", "Galarza", "Rodriguez", "Iguain", "Gallardo", "Ponzio", "Garcia",
 					"Mansilla", "Lombino", "Segado" };
 			int num = (int) (Math.random() * 11);
@@ -133,6 +156,9 @@ public class Equipo {
 		
 	}
 
+	
+	
+			
 	
 	
 	
