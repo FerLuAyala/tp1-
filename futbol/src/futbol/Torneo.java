@@ -12,6 +12,7 @@ public class Torneo {
 	private static int puntaje = 0;
 	private static double dinero = 0;
 
+
 	public Torneo() {
 
 	}
@@ -237,7 +238,7 @@ public class Torneo {
 
 	}
 
-///Funcion para jugar cuartos de fase
+	///Funcion para jugar cuartos de fase
 
 	public Partidos JugarFase(Equipo equipo1, Equipo equipo2) {
 
@@ -522,7 +523,7 @@ public class Torneo {
 
 	}
 
-///Seleccionar Equipos para competir
+	///Seleccionar Equipos para competir
 	public Equipo seleccionarEquipo(LinkedList<Equipo> equipos) {
 
 		String[] equiposArray = new String[equipos.size()];
@@ -537,8 +538,8 @@ public class Torneo {
 		return equipos.remove(opcion);
 	}
 
-////----ranking de los puestos
-	public void rankingPuntos() {
+	////----ranking de los puestos
+	public void puestosClasificacion() {
 		String[] equiposarray = new String[equipos.size()];
 		for (int i = 0; i < equipos.size(); i++) {
 			equiposarray[i] = equipos.get(i).getNombre();
@@ -555,7 +556,15 @@ public class Torneo {
 				"Rankin", JOptionPane.DEFAULT_OPTION, new ImageIcon(MainJuego.class.getResource("/img/logo.png")));
 
 	}
-
+	////si ya fue usada se vuelve a generar 
+	public void rankin(Torneo clasico) {
+	if (equipos.isEmpty()) {
+		recargarEquipos(clasico);
+		puestosClasificacion();
+	} else {
+		puestosClasificacion();
+	}
+}
 	// Jugar Cuartos de Final con o sin Apuestas
 
 	/// Jugar Cuartos sin apuestas
@@ -651,7 +660,7 @@ public class Torneo {
 			;
 			clasico.getGanadores().add(nuevo.ganadorFase());
 			clasico.getPartidos().add(nuevo);
-
+		
 		}
 		for (int i = 0; i < 2; i++) {
 			JOptionPane.showMessageDialog(null, "", "SEMIFinal", JOptionPane.DEFAULT_OPTION,
@@ -671,6 +680,7 @@ public class Torneo {
 			;
 			clasico.getFinalistas().add(nuevo.ganadorFase());
 			clasico.getPartidos().add(nuevo);
+			
 		}
 
 		JOptionPane.showMessageDialog(null, "", "Final", JOptionPane.DEFAULT_OPTION,
@@ -679,7 +689,6 @@ public class Torneo {
 		Equipo equipo2 = clasico.seleccionarEquipo(clasico.getFinalistas());
 		String apuesta = realizarApuesta(equipo1, equipo2);
 		Partidos nuevo = clasico.JugarFase(equipo1, equipo2);
-
 		String ganador = nuevo.ganadorFase().getNombre();
 		actualizarPuntaje(apuesta, ganador);
 
@@ -687,8 +696,7 @@ public class Torneo {
 				"Termino el encuentro " + nuevo + "\nEl ganador De este Reducido fue:  " + "\n"
 						+ nuevo.ganadorFase().getNombre(),
 				" Ganador ", JOptionPane.DEFAULT_OPTION, new ImageIcon(MainJuego.class.getResource("/img/gana.png")));
-		clasico.getPartidos().add(nuevo);
-
+		
 	}
 
 	/// Si la lista esta vacia porque ya fue utilizada se vuelve a cargar
@@ -723,7 +731,7 @@ public class Torneo {
 		}
 	}
 
-	public void dineroApuesta() {
+	public void dineroApuesta(Torneo clasico) {
 
 		JOptionPane.showMessageDialog(null, "Bienvenido" + "\nLas apuestas consisten en participar de los 7 partidos\n"
 				+ "que se jugarán en los cuartos de finales del Reducido del \r\n"
@@ -736,7 +744,7 @@ public class Torneo {
 				+ " *Si su puntaje es menor a 10 pierde lo apostado.", " APUESTAS ", JOptionPane.DEFAULT_OPTION,
 				new ImageIcon(MainJuego.class.getResource("/img/apuesta.gif")));
 
-		rankingPuntos();
+		rankin(clasico);
 		String apuesta;
 
 		apuesta = (String) JOptionPane.showInputDialog(null,
@@ -757,14 +765,16 @@ public class Torneo {
 	}
 
 	public void actualizarPuntaje(String apuesta, String ganador) {
-
+		
 		if (apuesta.equals(ganador)) {
 			puntaje = puntaje + 10;
+		
 			JOptionPane.showMessageDialog(null, "¡Acertaste!", "APUESTA", JOptionPane.DEFAULT_OPTION,
 					new ImageIcon(MainJuego.class.getResource("/img/gano.png")));
 		} else {
 			if (puntaje == 0) {
 				puntaje = 0;
+				
 			} else {
 				puntaje = puntaje - 5;
 				JOptionPane.showMessageDialog(null, "No hubo Acierto", "APUESTA", JOptionPane.DEFAULT_OPTION,
@@ -772,42 +782,43 @@ public class Torneo {
 			}
 
 		}
-		JOptionPane.showMessageDialog(null, "TOTAL: " + puntaje, "APUESTA", JOptionPane.DEFAULT_OPTION,
-				new ImageIcon(MainJuego.class.getResource("/img/gol.png")));
+		JOptionPane.showMessageDialog(null, "TOTAL DE PUNTOS" + "\nHASTA EL MOMENTO: " + puntaje ,"APUESTA", JOptionPane.DEFAULT_OPTION,
+				new ImageIcon(MainJuego.class.getResource("/img/apuesta.gif")));
 
 	}
 
-	public void finalApuesta() {
+	public void finalApuesta(Torneo clasico) {
 		double gana = 0;
 		if (puntaje >= 30) {
 			gana = dinero * 3;
 			JOptionPane.showMessageDialog(null,
-					"Sumaste " + puntaje + "Puntos" + "\nFelicidades triplicaste tu apuesta!!!" + "\nGanó: $" + gana,
+					"Sumaste " + puntaje + "Puntos"  + "\nFelicidades triplicaste tu apuesta!!!" + "\nGanó: $" + gana ,
 					"APUESTA", JOptionPane.DEFAULT_OPTION,
 					new ImageIcon(MainJuego.class.getResource("/img/ganador.gif")));
 		} else if (puntaje >= 20) {
 			gana = dinero * 2;
 			JOptionPane.showMessageDialog(null,
-					"Sumaste " + puntaje + "Puntos" + "\nFelicidades duplicaste tu apuesta!!!" + "\nGanó: $" + gana,
+					"Sumaste " + puntaje + "Puntos" +  "\nFelicidades duplicaste tu apuesta!!!" + "\nGanó: $" + gana,
 					"APUESTA", JOptionPane.DEFAULT_OPTION,
 					new ImageIcon(MainJuego.class.getResource("/img/ganador.gif")));
 		} else if (puntaje >= 15) {
 			gana = dinero;
 			JOptionPane.showMessageDialog(null,
-					"Sumaste " + puntaje + "Puntos" + "\nFelicidades Recupero lo apostado: $" + gana, "APUESTA",
+					"Sumaste " + puntaje + "Puntos"  +"\nFelicidades Recupero lo apostado: $" + gana, "APUESTA",
 					JOptionPane.DEFAULT_OPTION, new ImageIcon(MainJuego.class.getResource("/img/ganador.gif")));
 		} else if (puntaje ==70) {
 			gana = 1000000;
 			JOptionPane.showMessageDialog(null,
-					"Sumaste " + puntaje + "Puntos" + "\nFelicidades GANO EL POZO ACUMULADO!!!: $" + gana, "APUESTA",
+					"Sumaste " + puntaje + "Puntos"  + "\nFelicidades GANO EL POZO ACUMULADO!!!: $" + gana, "APUESTA",
 					JOptionPane.DEFAULT_OPTION, new ImageIcon(MainJuego.class.getResource("/img/ganador.gif")));
 		} else {
 			gana = 0;
 			JOptionPane.showMessageDialog(null,
-					"Sumaste " + puntaje + "Puntos" + "\nPerdio su apuesta. \nSuerte en la próxima", "APUESTA",
+					"Sumaste " + puntaje + "Puntos"  + "\nPerdio su apuesta. \nSuerte en la próxima", "APUESTA",
 					JOptionPane.DEFAULT_OPTION, new ImageIcon(MainJuego.class.getResource("/img/perdioo.gif")));
 		}
-
+		
+	
 	}
 
 ///Jugar penales
