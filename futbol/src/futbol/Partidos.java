@@ -13,7 +13,7 @@ public class Partidos {
 	
 	
 	public Partidos (Equipo equipo1, Equipo equipo2 , int marca1, int marca2) {
-		super();
+		
 		cantPartidos++;
 		this.equipo1 = equipo1;
 		this.equipo2 = equipo2;
@@ -25,11 +25,7 @@ public class Partidos {
 	}
 
 
-	public Partidos(Equipo equipo, Equipo equipo3) {
-		// TODO Auto-generated constructor stub
-	}
-
-
+	
 	public Equipo getEquipo1() {
 		return equipo1;
 	}
