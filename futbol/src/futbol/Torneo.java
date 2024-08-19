@@ -737,7 +737,7 @@ public class Torneo {
 				+ "que se jugarán en los cuartos de finales del Reducido del \r\n"
 				+ "Nacional para ascender a Primera.\r\n" + "REGLAS\r\n"
 				+ "Con un monto mayor a 2000$ Usted puede participar\r\n" + "Por cada acierto usted sumará 10pts, \r\n"
-				+ "si no se le restarán 5pts.\r\n" + "Si acierta los 7 Partidos ustedes se gana el acumulado de 1.000.000"
+				+ "si no se le restarán 5pts.\r\n" + "Si acierta los 7 Partidos ustedes se gana el acumulado de 1.000.000\r\n"
 				+" *Si su puntaje es 30 o mas su apuesta se triplica.\r\n"
 				+ " *Si su puntaje es de 20 a 29 su apuesta se duplica.\r\n"
 				+ " *Si su puntaje es de 10 a 19 Recupera lo apostado.\r\n"
